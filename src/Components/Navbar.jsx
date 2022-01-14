@@ -109,8 +109,12 @@ const Navbar = () => {
                 }}
               >
                 {pages.map((page) => (
-                  <Link to={page.url} style={{ textDecoration: "none" }}>
-                    <MenuItem key={page.url} onClick={handleCloseNavMenu}>
+                  <Link
+                    to={page.url}
+                    style={{ textDecoration: "none" }}
+                    key={page.url}
+                  >
+                    <MenuItem onClick={handleCloseNavMenu}>
                       <Typography textAlign="center">{page.label}</Typography>
                     </MenuItem>
                   </Link>
@@ -127,9 +131,12 @@ const Navbar = () => {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
-                <Link to={page.url} style={{ textDecoration: "none" }}>
+                <Link
+                  to={page.url}
+                  style={{ textDecoration: "none" }}
+                  key={page.url}
+                >
                   <Button
-                    key={page.url}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block" }}
                   >

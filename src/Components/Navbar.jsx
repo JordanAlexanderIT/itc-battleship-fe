@@ -36,6 +36,7 @@ const customTheme = createTheme({
     },
   },
 });
+
 const pages = [
   {
     url: "",
@@ -44,10 +45,6 @@ const pages = [
   {
     url: "play",
     label: "Play",
-  },
-  {
-    url: "about",
-    label: "About Battleship",
   },
 ];
 const settings = [
@@ -64,9 +61,9 @@ const Navbar = () => {
   const divRef = React.useRef();
 
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(divRef.current);
+    setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = () => {
     setAnchorElUser(divRef.current);
   };
 
@@ -135,17 +132,26 @@ const Navbar = () => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <Link
-                    to={page.url}
-                    style={{ textDecoration: "none" }}
-                    key={page.url}
-                  >
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page.label}</Typography>
-                    </MenuItem>
-                  </Link>
-                ))}
+                <Link to="about" style={{ textDecoration: "none" }}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">About Battleship</Typography>
+                  </MenuItem>
+                </Link>
+                {userId
+                  ? pages.map((page) => (
+                      <Link
+                        to={page.url}
+                        style={{ textDecoration: "none" }}
+                        key={page.url}
+                      >
+                        <MenuItem onClick={handleCloseNavMenu}>
+                          <Typography textAlign="center">
+                            {page.label}
+                          </Typography>
+                        </MenuItem>
+                      </Link>
+                    ))
+                  : null}
               </Menu>
             </Box>
             <Typography
@@ -157,20 +163,30 @@ const Navbar = () => {
               <img alt="Kaboom" src={battleship} className="navbar-logo" />
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Link
-                  to={page.url}
-                  style={{ textDecoration: "none" }}
-                  key={page.url}
+              <Link to="about" style={{ textDecoration: "none" }}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page.label}
-                  </Button>
-                </Link>
-              ))}
+                  About Battleship
+                </Button>
+              </Link>
+              {userId
+                ? pages.map((page) => (
+                    <Link
+                      to={page.url}
+                      style={{ textDecoration: "none" }}
+                      key={page.url}
+                    >
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      >
+                        {page.label}
+                      </Button>
+                    </Link>
+                  ))
+                : null}
             </Box>
             <Box ref={divRef}>
               {userId ? (

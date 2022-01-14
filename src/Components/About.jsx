@@ -3,13 +3,12 @@ const About = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", p: 2 }}>
       <Typography variant="h5" gutterBottom>
-        Oh, hello! This is the About Component
+        In this component, we will tell users about the game and explain the
+        rules.
       </Typography>
-      <Box>
-        <Button variant="contained" color="success">
-          I'm a button!
-        </Button>
-      </Box>
+      <Typography variant="body" gutterBottom>
+        Somewhere on the page we will encourage them to register to play.
+      </Typography>
     </Box>
   );
 };

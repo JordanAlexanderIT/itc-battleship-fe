@@ -25,7 +25,7 @@ function App() {
     >
       <div className="App">
         <Navbar />
-        {!userId ? <Outlet /> : <Home />}
+        {userId ? <Outlet /> : <Home />}
       </div>
     </AppContext.Provider>
   );

@@ -1,4 +1,6 @@
 import React from "react";
+import AppContext from "../Context/AppContext";
+import LoginRegister from "./LoginRegister";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -28,6 +30,10 @@ const customTheme = createTheme({
       main: "#F2003C",
       contrastText: "#fff",
     },
+    success: {
+      main: "#009966",
+      contrastText: "#fff",
+    },
   },
 });
 const pages = [
@@ -44,17 +50,24 @@ const pages = [
     label: "About Battleship",
   },
 ];
-const settings = ["Profile", "Logout"];
+const settings = [
+  { url: "", label: "Profile" },
+  { url: "", label: "Logout" },
+];
 
 const Navbar = () => {
+  const appContext = React.useContext(AppContext);
+  const { userId, logout } = appContext;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const divRef = React.useRef();
 
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+    setAnchorElNav(divRef.current);
   };
   const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+    setAnchorElUser(divRef.current);
   };
 
   const handleCloseNavMenu = () => {
@@ -64,6 +77,20 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen((prev) => {
+      return !prev;
+    });
+  };
+
+  React.useEffect(() => {
+    setAnchorElUser(divRef.current);
+  }, [divRef]);
 
   return (
     <ThemeProvider theme={customTheme}>
@@ -145,35 +172,60 @@ const Navbar = () => {
                 </Link>
               ))}
             </Box>
-
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Homer Simpson" src={mee6} />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
+            <Box ref={divRef}>
+              {userId ? (
+                <Box sx={{ flexGrow: 0 }}>
+                  <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar alt="Homer Simpson" src={mee6} />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    {settings.map((setting) => (
+                      <Link
+                        to={setting.url}
+                        style={{ textDecoration: "none" }}
+                        key={setting.label}
+                      >
+                        <MenuItem
+                          onClick={
+                            setting.label === "Logout"
+                              ? logout
+                              : handleCloseNavMenu
+                          }
+                        >
+                          <Typography textAlign="center">
+                            {setting.label}
+                          </Typography>
+                        </MenuItem>
+                      </Link>
+                    ))}
+                  </Menu>
+                </Box>
+              ) : (
+                <Box sx={{ flexGrow: 0 }} onClick={handleOpen}>
+                  <LoginRegister
+                    open={open}
+                    handleOpen={handleOpen}
+                    handleClose={handleClose}
+                  />
+                </Box>
+              )}
             </Box>
           </Toolbar>
         </Container>

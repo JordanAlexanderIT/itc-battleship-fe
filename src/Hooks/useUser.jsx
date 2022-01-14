@@ -27,7 +27,8 @@ const useUser = () => {
       const userHeader = {
         headers: { Authorization: `Bearer ${response.data.token}` },
       };
-      setUserId(response.data._id);
+      const currentId = response.data.userId;
+      setUserId(currentId);
       setHeader(userHeader);
     } catch (err) {
       alert(`Error: ${err}`);

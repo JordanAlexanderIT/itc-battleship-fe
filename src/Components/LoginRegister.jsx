@@ -108,7 +108,78 @@ const LoginRegister = (props) => {
             </DialogActions>
           </>
         ) : (
-          <></>
+          <>
+            <DialogTitle>Sign-Up</DialogTitle>
+            <DialogContent>
+              <TextField
+                margin="dense"
+                id="displayName"
+                label="Display Name"
+                name="registerDisplayName"
+                type="text"
+                fullWidth
+                variant="standard"
+                onChange={handleChange}
+                value={formObject.registerDisplayName}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="emailEntry"
+                label="Email Address"
+                type="email"
+                name="registerEmail"
+                fullWidth
+                variant="standard"
+                onChange={handleChange}
+                value={formObject.registerEmail}
+              />
+              <TextField
+                margin="dense"
+                id="pwdFirst"
+                label="Password"
+                type="password"
+                name="registerPassword"
+                fullWidth
+                variant="standard"
+                onChange={handleChange}
+                value={formObject.registerPassword}
+              />
+              <TextField
+                margin="dense"
+                id="pwdSecond"
+                label="Verify Password"
+                type="password"
+                name="registerVerify"
+                fullWidth
+                variant="standard"
+                onChange={handleChange}
+                value={formObject.registerVerify}
+                error={
+                  formObject.registerPassword !== formObject.registerVerify
+                }
+                helperText={
+                  formObject.registerPassword !== formObject.registerVerify
+                    ? "Passwords do not match."
+                    : null
+                }
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} id="appButton">
+                Cancel
+              </Button>
+              <Button
+                id="appButton"
+                onClick={handleRegister}
+                disabled={
+                  formObject.registerVerify !== formObject.registerPassword
+                }
+              >
+                Create Account
+              </Button>
+            </DialogActions>
+          </>
         )}
       </Dialog>
     </Box>

@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 const About = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", p: 2 }}>

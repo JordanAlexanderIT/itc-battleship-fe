@@ -8,10 +8,10 @@ const useUser = () => {
   const register = async (userCredentials) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/user/signup",
+        "http://localhost:8000/user/register",
         userCredentials
       );
-      setUserId(response.data._id);
+      setUserId(response.data.userId);
       console.log(response.data);
     } catch (err) {
       alert(`Error: ${err}`);

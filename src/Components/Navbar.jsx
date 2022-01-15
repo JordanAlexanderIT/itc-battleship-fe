@@ -63,7 +63,9 @@ const Navbar = () => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = () => {
-    setAnchorElUser(divRef.current);
+    if (userId) {
+      setAnchorElUser(divRef.current);
+    }
   };
 
   const handleCloseNavMenu = () => {
@@ -77,10 +79,6 @@ const Navbar = () => {
   React.useEffect(() => {
     setAnchorElUser(divRef.current);
   }, [divRef]);
-
-  // React.useEffect(() => {
-  //   console.log(state.authModalOpen);
-  // }, [state.authModalOpen]);
 
   return (
     <ThemeProvider theme={customTheme}>
@@ -215,7 +213,7 @@ const Navbar = () => {
                           onClick={
                             setting.label === "Logout"
                               ? logout
-                              : handleCloseNavMenu
+                              : handleCloseUserMenu
                           }
                         >
                           <Typography textAlign="center">
@@ -227,7 +225,6 @@ const Navbar = () => {
                   </Menu>
                 </Box>
               ) : (
-                // <Box sx={{ flexGrow: 0 }}>The Component</Box>
                 <LoginRegister />
               )}
             </Box>

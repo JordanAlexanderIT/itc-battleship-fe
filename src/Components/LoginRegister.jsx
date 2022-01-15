@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   TextField,
 } from "@mui/material";
@@ -73,7 +72,7 @@ const LoginRegister = () => {
   return (
     <div>
       <Button variant="contained" color="success" onClick={handleClickOpen}>
-        Open alert dialog
+        Login
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle id="alert-dialog-title">

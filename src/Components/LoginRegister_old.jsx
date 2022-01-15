@@ -2,20 +2,18 @@ import React from "react";
 import AppContext from "../Context/AppContext";
 import UserFormButtons from "../Components/UserFormButtons";
 import {
+  Box,
   Button,
+  TextField,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
-  TextField,
 } from "@mui/material";
 
 const LoginRegister = () => {
   const appContext = React.useContext(AppContext);
-  const { login, register } = appContext;
-  const [open, setOpen] = React.useState(false);
-  const [formPage, setFormPage] = React.useState(true);
+  const { login, register, state, setState } = appContext;
   const [formObject, setFormObject] = React.useState({
     loginEmail: "",
     loginPassword: "",
@@ -24,17 +22,10 @@ const LoginRegister = () => {
     registerVerify: "",
     registerDisplayName: "",
   });
+  const [formPage, setFormPage] = React.useState(true);
 
   const handleModalFormSelect = (e) => {
     e.target.name === "Login" ? setFormPage(true) : setFormPage(false);
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const handleChange = (e) => {
@@ -70,20 +61,26 @@ const LoginRegister = () => {
     }
   };
 
+  const handleClose = React.useCallback(() => {
+    setState((prev) => ({ ...prev, authModalOpen: false }));
+    console.log("Close function has been run");
+    console.log(state.authModalOpen);
+    setState({ ...state, authModalOpen: false });
+  }, [state, setState]);
+
   return (
-    <div>
-      <Button variant="contained" color="success" onClick={handleClickOpen}>
-        Open alert dialog
+    <Box>
+      <Button variant="contained" color="success">
+        Login
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle id="alert-dialog-title">
-          <UserFormButtons
-            formPage={formPage}
-            handleModalFormSelect={handleModalFormSelect}
-          />
-        </DialogTitle>
+      <Dialog open={state.authModalOpen} onClose={handleClose}>
+        <UserFormButtons
+          formPage={formPage}
+          handleModalFormSelect={handleModalFormSelect}
+        />
         {formPage ? (
           <>
+            <DialogTitle>Login</DialogTitle>
             <DialogContent>
               <TextField
                 autoFocus
@@ -110,10 +107,10 @@ const LoginRegister = () => {
               />
             </DialogContent>
             <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
               <Button
-                variant="contained"
-                color="success"
                 onClick={handleLogin}
+                id="appButton"
                 disabled={
                   formObject.loginEmail.length < 3 ||
                   formObject.loginPassword.length < 3
@@ -121,13 +118,11 @@ const LoginRegister = () => {
               >
                 Login
               </Button>
-              <Button onClick={handleClose} autoFocus>
-                Cancel
-              </Button>
             </DialogActions>
           </>
         ) : (
           <>
+            <DialogTitle>Sign-Up</DialogTitle>
             <DialogContent>
               <TextField
                 margin="dense"
@@ -184,9 +179,11 @@ const LoginRegister = () => {
               />
             </DialogContent>
             <DialogActions>
+              <Button onClick={handleClose} id="appButton">
+                Cancel
+              </Button>
               <Button
-                variant="contained"
-                color="success"
+                id="appButton"
                 onClick={handleRegister}
                 disabled={
                   formObject.registerEmail.length < 3 ||
@@ -194,16 +191,13 @@ const LoginRegister = () => {
                   formObject.registerDisplayName.length < 1
                 }
               >
-                Register
-              </Button>
-              <Button onClick={handleClose} autoFocus>
-                Cancel
+                Create Account
               </Button>
             </DialogActions>
           </>
         )}
       </Dialog>
-    </div>
+    </Box>
   );
 };
 

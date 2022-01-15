@@ -48,7 +48,7 @@ const pages = [
   },
 ];
 const settings = [
-  { url: "", label: "Profile" },
+  { url: "profile", label: "Profile" },
   { url: "", label: "Logout" },
 ];
 
@@ -57,7 +57,6 @@ const Navbar = () => {
   const { userId, logout } = appContext;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
   const divRef = React.useRef();
 
   const handleOpenNavMenu = (event) => {
@@ -75,19 +74,13 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen((prev) => {
-      return !prev;
-    });
-  };
-
   React.useEffect(() => {
     setAnchorElUser(divRef.current);
   }, [divRef]);
+
+  // React.useEffect(() => {
+  //   console.log(state.authModalOpen);
+  // }, [state.authModalOpen]);
 
   return (
     <ThemeProvider theme={customTheme}>
@@ -234,13 +227,8 @@ const Navbar = () => {
                   </Menu>
                 </Box>
               ) : (
-                <Box sx={{ flexGrow: 0 }} onClick={handleOpen}>
-                  <LoginRegister
-                    open={open}
-                    handleOpen={handleOpen}
-                    handleClose={handleClose}
-                  />
-                </Box>
+                // <Box sx={{ flexGrow: 0 }}>The Component</Box>
+                <LoginRegister />
               )}
             </Box>
           </Toolbar>

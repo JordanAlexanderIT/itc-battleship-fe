@@ -6,6 +6,7 @@ import App from "./App";
 import Home from "./Components/Home";
 import Play from "./Components/Play";
 import About from "./Components/About";
+import Profile from "./Components/Profile";
 import Admin from "./Components/Admin";
 
 ReactDOM.render(
@@ -16,6 +17,7 @@ ReactDOM.render(
           <Route index element={<Home />} />
           <Route path="play" element={<Play />} />
           <Route path="about" element={<About />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="admin" element={<Admin />} />
         </Route>
       </Routes>

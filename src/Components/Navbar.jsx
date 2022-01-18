@@ -46,9 +46,14 @@ const pages = [
     url: "play",
     label: "Play",
   },
+  {
+    url: "join",
+    label: "Join Game",
+  },
 ];
 const settings = [
   { url: "profile", label: "Profile" },
+  { url: "playtest", label: "Play Test by Jordan" },
   { url: "", label: "Logout" },
 ];
 

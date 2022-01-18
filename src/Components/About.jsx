@@ -1,7 +1,7 @@
 import { Box, Typography, Divider } from "@mui/material";
 import useWindow from "../Hooks/useWindow";
-import eximg1 from "../img/eximg1.png";
-import eximg2 from "../img/eximg2.png";
+import eximg1 from "../img/battleship1.jpg";
+import eximg2 from "../img/battleship_station.png";
 
 const About = () => {
   const { width } = useWindow();
@@ -58,11 +58,11 @@ const About = () => {
         </Typography>
       </Box>
       <Box sx={{ m: 1, p: 1 }}>
-        <Box sx={{ my: 1 }}>
-          <img alt="Kaboom" src={eximg1} />
+        <Box sx={{ my: 1, border: 4, borderRadius: 2 }}>
+          <img alt="Kaboom" src={eximg1} className="about-img" />
         </Box>
-        <Box sx={{ my: 1 }}>
-          <img alt="Kaboom" src={eximg2} />
+        <Box sx={{ my: 1, border: 4, borderRadius: 2 }}>
+          <img alt="Kaboom" src={eximg2} className="about-img" />
         </Box>
       </Box>
     </Box>

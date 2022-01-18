@@ -68,7 +68,8 @@ const LoginRegister = () => {
     };
     try {
       await register(registerObject);
-      handleClose();
+      if(isMountedRef.current)
+        handleClose();
     } catch (err) {
       console.log(err);
     }

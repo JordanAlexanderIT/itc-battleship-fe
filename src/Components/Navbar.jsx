@@ -39,12 +39,12 @@ const customTheme = createTheme({
 
 const pages = [
   {
-    url: "",
-    label: "Home",
-  },
-  {
     url: "play",
     label: "Play",
+  },
+  {
+    url: "create",
+    label: "Create Game",
   },
   {
     url: "join",

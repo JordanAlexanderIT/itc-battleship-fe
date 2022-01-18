@@ -6,12 +6,12 @@ import axios from "axios";
 
 const Session = () => {
   const appContext = React.useContext(AppContext);
-  const { userId } = appContext; // We may need the userId here, maybe not.
+  const { header } = appContext;
   const { sessionId } = useParams();
   return (
     <Box sx={{ m: 4 }}>
       <Typography sx={{ m: 1, p: 1 }}>
-        {sessionId} will be used to make API requests along user Id ({userId})
+        {sessionId} will be used to make API requests along user Id
       </Typography>
     </Box>
   );

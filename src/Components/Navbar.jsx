@@ -49,6 +49,7 @@ const pages = [
 ];
 const settings = [
   { url: "profile", label: "Profile" },
+  { url: "playtest", label: "Play Test by Jordan" },
   { url: "", label: "Logout" },
 ];
 

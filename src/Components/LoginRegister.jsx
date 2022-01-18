@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import AppContext from "../Context/AppContext";
 import UserFormButtons from "../Components/UserFormButtons";
 import {
@@ -23,7 +23,11 @@ const LoginRegister = () => {
     registerVerify: "",
     registerDisplayName: "",
   });
-
+  const isMountedRef = useRef(false);
+  useEffect(()=>{
+    isMountedRef.current = true;
+    return ()=>{isMountedRef.current = false}
+  },[])
   const handleModalFormSelect = (e) => {
     e.target.name === "Login" ? setFormPage(true) : setFormPage(false);
   };
@@ -49,7 +53,8 @@ const LoginRegister = () => {
     };
     try {
       await login(loginObject);
-      handleClose();
+      if(isMountedRef.current)
+        handleClose();
     } catch (err) {
       // Error response should be coming from useUser
     }

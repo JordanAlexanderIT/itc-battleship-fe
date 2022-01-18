@@ -8,6 +8,7 @@ import Play from "./Components/Play";
 import About from "./Components/About";
 import Profile from "./Components/Profile";
 import Admin from "./Components/Admin";
+import OrsTestingPage from "./Ors/OrsTestingPage.jsx";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.render(
           <Route path="profile" element={<Profile />} />
           <Route path="admin" element={<Admin />} />
         </Route>
+        <Route path="ors" element={<OrsTestingPage />} />
       </Routes>
     </Router>
   </React.StrictMode>,

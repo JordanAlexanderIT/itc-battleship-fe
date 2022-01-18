@@ -1,10 +1,80 @@
 .App {
   text-align: center;
+  flex-direction: row;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.PlayField {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: 1rem 1rem;
+}
+
+.PlayerField {
+  display: grid;
+  grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+  grid-template-rows: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+  height: 402px;
+  width: 402px;
+  background-color: lavender;
+}
+
+.cell {
+  display: flex;
+  height: 38px;
+  width: 38px;
+  border: 2px solid;
+}
+
+.FleetField {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 510px;
+  width: 250px;
+  margin-left: 3rem;
+  border: 2px solid;
+}
+
+.FourCellShip {
+  display: grid;
+  grid-template-columns: 40px 40px 40px 40px;
+  background-color: aquamarine;
+  height: 40px;
+  width: 160px;
+  margin-left: 1rem;
+}
+
+.ThreeCellShip {
+  display: grid;
+  grid-template-columns: 40px 40px 40px;
+  background-color: aquamarine;
+  height: 40px;
+  width: 120px;
+  margin-left: 1rem;
+}
+
+.TwoCellShip {
+  display: grid;
+  grid-template-columns: 40px 40px;
+  background-color: aquamarine;
+  height: 40px;
+  width: 80px;
+  margin-left: 1rem;
+}
+
+.OneCellShip {
+  display: grid;
+  grid-template-columns: 40px;
+  background-color: aquamarine;
+  height: 40px;
+  width: 40px;
+  margin-left: 1rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {

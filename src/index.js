@@ -5,7 +5,8 @@ import "./index.css";
 import App from "./App";
 import Home from "./Components/Home";
 import Play from "./Components/Play";
-import TestPlay from "./Components/TestPlay";
+import JoinGame from "./Components/JoinGame";
+import Session from "./Components/Session";
 import About from "./Components/About";
 import Profile from "./Components/Profile";
 import Admin from "./Components/Admin";
@@ -18,7 +19,8 @@ ReactDOM.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="play" element={<Play />} />
-          <Route path="playtest" element={<TestPlay />} />
+          <Route path="join" element={<JoinGame />} />
+          <Route path="session/:sessionId" element={<Session />} />
           <Route path="about" element={<About />} />
           <Route path="profile" element={<Profile />} />
           <Route path="admin" element={<Admin />} />

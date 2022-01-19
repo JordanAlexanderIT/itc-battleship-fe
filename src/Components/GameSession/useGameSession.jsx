@@ -3,7 +3,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import AppContext from "../../Context/AppContext.jsx";
 
 const pollingIntervalMS = 1000;
-const useGameSession = (shouldPoll) => {
+const useGameSession = (shouldPoll = false) => {
   const [sessionId, setSessionId] = useState();
   const [gameSession, setGameSession] = useState();
   const [isPolling, setIsPolling] = useState(shouldPoll);
@@ -49,7 +49,28 @@ const useGameSession = (shouldPoll) => {
       alert(`Error: ${err}`);
     }
   };
-  return { create, sessionId, setIsPolling, gameSession, populateGameSession };
+  const join = async (joinSessionId) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/game-session/${joinSessionId}/join`,
+        {},
+        header
+      );
+      setSessionId(joinSessionId);
+      return response.data;
+    } catch (error) {
+      alert(`Error: ${error?.response?.data}`);
+      return { error: new Error(error?.response?.data) };
+    }
+  };
+  return {
+    create,
+    join,
+    sessionId,
+    setIsPolling,
+    gameSession,
+    populateGameSession,
+  };
 };
 
 export default useGameSession;

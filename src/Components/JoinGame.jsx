@@ -1,14 +1,21 @@
 import React from "react";
 import { Box, Button, Typography, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useGameSession from "./GameSession/useGameSession.jsx";
 
 const JoinGame = () => {
   const [sessionId, setSessionId] = React.useState("");
+  const { join: joinSession } = useGameSession();
+  const navigate = useNavigate();
 
   const handleChangeSessionId = (e) => {
     setSessionId(e.target.value);
   };
 
+  const handleJoinGameClick = async (e) => {
+    const response = await joinSession(sessionId);
+    if (!response.error) navigate(`/session/${sessionId}`);
+  };
   return (
     <Box sx={{ m: 2 }}>
       <Typography variant="h4" sx={{ m: 1, p: 1 }}>
@@ -42,11 +49,13 @@ const JoinGame = () => {
           value={sessionId}
         />
       </Box>
-      <Link to={`/session/${sessionId}`}>
-        <Button variant="contained" color="secondary">
-          Join Game
-        </Button>
-      </Link>
+      <Button
+        onClick={handleJoinGameClick}
+        variant="contained"
+        color="secondary"
+      >
+        Join Game
+      </Button>
     </Box>
   );
 };

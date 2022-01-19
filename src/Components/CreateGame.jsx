@@ -1,11 +1,18 @@
 import { Box, Button, Typography } from "@mui/material";
 import { ContentCopyOutlined } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useGameSession from "./GameSession/useGameSession";
+import { useEffect } from "react";
+import gameSessionStates from "./GameSession/gameSessionStates.js";
 
 const CreateGame = () => {
-  const { create, sessionId, setIsPolling } = useGameSession();
-
+  const { create, sessionId, setIsPolling, gameSession } = useGameSession();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!gameSession) return;
+    if (gameSession.state !== gameSessionStates.waitingForPlayers)
+      navigate(`/session/${sessionId}`);
+  }, [gameSession]);
   async function handleChallengeOpponentClick() {
     await create();
     setIsPolling(true);

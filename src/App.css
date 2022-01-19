@@ -8,7 +8,7 @@
   pointer-events: none;
 }
 
-.PlayField {
+.Play {
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -31,11 +31,27 @@
   border: 2px solid;
 }
 
+.highlightedCell {
+  display: flex;
+  height: 38px;
+  width: 38px;
+  border: 2px solid;
+  background-color: red;
+}
+
+.cellActive {
+  display: flex;
+  height: 38px;
+  width: 38px;
+  border: 2px solid;
+  background-color: aquamarine;
+}
+
 .FleetField {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 510px;
+  height: auto;
   width: 250px;
   margin-left: 3rem;
   border: 2px solid;

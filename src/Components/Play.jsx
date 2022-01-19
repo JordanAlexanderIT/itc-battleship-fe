@@ -1,10 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
 import PlayerField from "./PlayerField";
 import Fleet from "./Fleet";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { useState } from 'react/cjs/react.development';
 
 const Play = () => {
+
+  const [ship, setShip] = useState('');
+  const [orientation, setOrientation] = useState('H');
+
   return (
     <Box
       sx={{
@@ -13,12 +16,10 @@ const Play = () => {
         p: 2,
       }}
     >
-      <DndProvider backend={HTML5Backend}>
-        <div className="PlayField">
-          <PlayerField />
-          <Fleet />
-        </div>
-      </DndProvider>
+      <div className='Play'>
+      <PlayerField ship={ship} orientation={orientation}/>
+      <Fleet setShip={setShip} setOrientation={setOrientation}/>
+    </div>
     </Box>
   );
 };

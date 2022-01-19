@@ -1,21 +1,17 @@
 import React from 'react';
-import Cell from '../Cell';
-import { useDrag } from 'react-dnd';
 
-const OneCellShip = ({id}) => {
-
-    const [{isDragging}, drag] = useDrag(()=> ({
-        type: 'ship',
-        item: {id: id},
-        collect: monitor => ({
-            isDragging: !!monitor.isDragging(),
-        }),
-    }));
+const OneCellShip = ({setShip, setCounter4}) => {
 
     return (
-        <div className='OneCellShip' ref={drag} style={{border: isDragging ? "5px solid pink" : "0px"}}> 
-           <Cell /> 
-        </div>
+      <div
+        className="OneCellShip"
+        onClick={() => {
+          setShip("1cells");
+          setCounter4(
+            (prevState) => prevState - 1
+          );
+        }}
+      ></div>
     );
 };
 

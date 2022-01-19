@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { ContentCopyOutlined } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 import useGameSession from "./GameSession/useGameSession";
@@ -48,7 +48,25 @@ const CreateGame = () => {
       </Box>
     );
   }
-
+  function renderWaitingForPlayersLoader() {
+    if (!sessionId) return null;
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          p: 2,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <CircularProgress></CircularProgress>
+        <Typography variant="subtitle1" align={"left"} color={"InfoText"}>
+          Waiting for other player
+        </Typography>
+      </Box>
+    );
+  }
   return (
     <Box sx={{ m: 2 }}>
       <Typography variant="h4" sx={{ m: 1, p: 1 }}>
@@ -70,16 +88,8 @@ const CreateGame = () => {
       >
         Create
       </Button>
-      {renderSessionIdBox()}{" "}
-      {sessionId ? (
-        <>
-          <Link to={`/session/${sessionId}`}>
-            <Button variant="contained" color="secondary">
-              Join this session
-            </Button>
-          </Link>
-        </>
-      ) : null}
+      {renderSessionIdBox()}
+      {renderWaitingForPlayersLoader()}
     </Box>
   );
 };

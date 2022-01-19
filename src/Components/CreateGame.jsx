@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import useGameSession from "./GameSession/useGameSession";
 
 const CreateGame = () => {
-  const { create, sessionId } = useGameSession();
+  const { create, sessionId, setIsPolling } = useGameSession();
 
   async function handleChallengeOpponentClick() {
     await create();
+    setIsPolling(true);
     return;
   }
 

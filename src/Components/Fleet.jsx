@@ -3,9 +3,10 @@ import FourCellShip from "../Components/Ships/FourCellShip";
 import ThreeCellShip from "../Components/Ships/ThreeCellShip";
 import TwoCellShip from "../Components/Ships/TwoCellShip";
 import OneCellShip from "../Components/Ships/OneCellShip";
+import { Button, Box } from "@mui/material";
 import { useState } from "react";
 
-const Fleet = ({ setShip, setOrientation }) => {
+const Fleet = ({ setShip, setOrientation, orientation }) => {
   const [counter1, setCounter1] = useState(1);
   const [counter2, setCounter2] = useState(2);
   const [counter3, setCounter3] = useState(3);
@@ -36,7 +37,13 @@ const Fleet = ({ setShip, setOrientation }) => {
           }}
           style={{ cursor: "pointer" }}
         >
-          HOR
+          <Button
+            variant="contained"
+            color="success"
+            disabled={orientation === "H"}
+          >
+            Horizontal
+          </Button>
         </span>
         <span
           onClick={() => {
@@ -44,9 +51,32 @@ const Fleet = ({ setShip, setOrientation }) => {
           }}
           style={{ cursor: "pointer" }}
         >
-          VER
+          <Button
+            variant="contained"
+            color="success"
+            disabled={orientation === "V"}
+          >
+            Vertical
+          </Button>
         </span>
       </span>
+      <div>
+        {counter1 > 0 ? <>{counter1} Battleship left to place</> : null}
+      </div>
+      <div>
+        {counter2 > 0 ? <>{counter2} Destroyer(s) left to place</> : null}
+      </div>
+      <div>
+        {counter3 > 0 ? <>{counter3} Frigate(s) left to place</> : null}
+      </div>
+      <div>
+        {counter4 > 0 ? <>{counter4} Submarine(s) left to place</> : null}
+      </div>
+      <Box sx={{ p: 2 }}>
+        <Button variant="contained" color="secondary">
+          End Turn
+        </Button>
+      </Box>
     </div>
   );
 };

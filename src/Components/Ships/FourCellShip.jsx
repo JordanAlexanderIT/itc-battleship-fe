@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-const FourCellShip = ({setShip, setCounter1}) => {
-
-    return (
-      <div
-        className="FourCellShip"
-        onClick={() => {
-          setShip("4cells");
-          setCounter1("");
-        }}
-      ></div>
-    );
+const FourCellShip = ({ setShip, setCounter1 }) => {
+  return (
+    <div
+      alt="Battleship"
+      className="FourCellShip"
+      onClick={() => {
+        setShip("4cells");
+        setCounter1("");
+      }}
+    ></div>
+  );
 };
 
 export default FourCellShip;

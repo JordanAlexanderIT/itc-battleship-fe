@@ -1,12 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import PlayerField from "./PlayerField";
 import Fleet from "./Fleet";
-import { useState } from 'react/cjs/react.development';
+import { useState } from "react/cjs/react.development";
 
 const Play = () => {
-
-  const [ship, setShip] = useState('');
-  const [orientation, setOrientation] = useState('H');
+  const [ship, setShip] = useState("");
+  const [orientation, setOrientation] = useState("H");
 
   return (
     <Box
@@ -16,10 +15,15 @@ const Play = () => {
         p: 2,
       }}
     >
-      <div className='Play'>
-      <PlayerField ship={ship} orientation={orientation}/>
-      <Fleet setShip={setShip} setOrientation={setOrientation}/>
-    </div>
+      <Typography variant="h5">Please place your ships.</Typography>
+      <div className="Play">
+        <PlayerField ship={ship} orientation={orientation} />
+        <Fleet
+          setShip={setShip}
+          setOrientation={setOrientation}
+          orientation={orientation}
+        />
+      </div>
     </Box>
   );
 };

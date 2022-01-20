@@ -18,7 +18,7 @@ ReactDOM.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
+          <Route index element={<About />} />
           <Route path="play" element={<Play />} />
           <Route path="join" element={<JoinGame />} />
           <Route path="create" element={<CreateGame />} />

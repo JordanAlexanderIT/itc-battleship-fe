@@ -12,7 +12,7 @@ const CreateGame = () => {
     if (!gameSession) return;
     if (gameSession.state !== gameSessionStates.waitingForPlayers)
       navigate(`/session/${sessionId}`);
-  }, [gameSession]);
+  }, [gameSession, sessionId, navigate]);
   async function handleChallengeOpponentClick() {
     await create();
     setIsPolling(true);

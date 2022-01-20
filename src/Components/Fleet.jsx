@@ -1,9 +1,9 @@
 import React from 'react';
-import FourCellShip from '../../../../Group project/itc-battleship-fe/src/Components/Ships/FourCellShip';
-import ThreeCellShip from '../../../../Group project/itc-battleship-fe/src/Components/Ships/ThreeCellShip';
-import TwoCellShip from '../../../../Group project/itc-battleship-fe/src/Components/Ships/TwoCellShip';
-import OneCellShip from '../../../../Group project/itc-battleship-fe/src/Components/Ships/OneCellShip';
-import { useState } from 'react/cjs/react.development';
+import FourCellShip from './Ships/FourCellShip';
+import ThreeCellShip from './Ships/ThreeCellShip';
+import TwoCellShip from './Ships/TwoCellShip';
+import OneCellShip from './Ships/OneCellShip';
+import { useState } from 'react';
 
 const Fleet = ({setShip, setOrientation}) => {
 

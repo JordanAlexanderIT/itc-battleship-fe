@@ -5,17 +5,18 @@ const useUser = () => {
   const [userId, setUserId] = React.useState(null);
   const [header, setHeader] = React.useState(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     const userId = localStorage.getItem("userId");
-    setUserId( userId);
+    setUserId(userId);
 
     const token = localStorage.getItem("jwt");
     const userHeader = {
       headers: { Authorization: `Bearer ${token}` },
     };
 
-    setHeader(userHeader );
-  },[])
+    setHeader(userHeader);
+  }, []);
+
   const register = async (userCredentials) => {
     try {
       const response = await axios.post(
